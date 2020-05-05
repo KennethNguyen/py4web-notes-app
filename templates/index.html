@@ -1,0 +1,15 @@
+[[extend 'layout.html']]
+
+<div id="vue-target">
+  <section class="section">
+
+  </section>
+</div>
+
+[[block page_scripts]]
+<!-- Loads the index-specific js for Vue -->
+<script>
+  let callback_url = "[[=XML(callback_url)]]";
+</script>
+<script src="js/index.js"></script>
+[[end]]
