@@ -15,8 +15,7 @@ from pydal.validators import *
 # db.commit()
 #
 
-db.define_table('people',
-                Field('first_name'),
-                Field('last_name'))
+def get_user_email():
+    return auth.current_user.get('email') if auth.current_user else None
 
 db.commit()
