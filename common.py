@@ -10,7 +10,14 @@ from py4web.utils.factories import ActionFactory
 from py4web.utils.url_signer import URLSigner
 from . import settings
 
-db = DAL(settings.DB_URI,
+if os.environ.get("GAE_ENV"):
+    # We are on appengine
+    db = DAL(settings.GAE_DB_URI,
+         migrate_enabled=False,
+         pool_size=settings.DB_POOL_SIZE)
+else:
+    # From Localhost
+    db = DAL(settings.TESTING_DB_URI,
          folder=settings.DB_FOLDER,
          pool_size=settings.DB_POOL_SIZE)
 

@@ -11,6 +11,24 @@ import os
 try: from . settings_private import *
 except: pass
 
+# Uses the private settings to create the DB URI.
+# For a local DB, it would be better to use a MySQL database, to have the same
+# set up as in the cloud, but in a pinch, sqlite will do.
+# A better yet idea would be to keep in the cloud a "testing" database, kept in
+# mysql on the same db server as the production db, and to use that for
+# development.  In that way, what you find in databases/sql.log can also give you
+# suggestions for the operations you have to do in production to update the
+# production database.
+TESTING_DB_URI = "sqlite://storage.db"
+
+# This is the URL of MySQL as accessed from Google Appengine
+GAE_DB_URI = "google:MySQLdb://ken:slugKen1919!@/notes_db?unix_socket=/cloudsql/kenneth-183-notes-app:us-west2:kenneth-notes-app".format(
+    DB_USER="ken",
+    DB_NAME="notes_db",
+    DB_PASSWORD="slugKen1919!",
+    DB_CONNECTION="kenneth-183-notes-app:us-west2:kenneth-notes-app"
+)
+
 # db settings
 APP_FOLDER = os.path.dirname(__file__)
 # DB_FOLDER:    Sets the place where migration files will be created

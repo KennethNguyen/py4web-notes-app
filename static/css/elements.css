@@ -23,3 +23,44 @@
 .textarea:-ms-input-placeholder {
   color: rgba(54, 54, 54, 0.7);
 }
+
+html, body, footer {
+  background: rgb(238,174,202);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+
+.fa-plus-circle {
+  color: black;
+}
+
+.input.is-hovered {
+  border-color: white;
+}
+
+.white {
+  background-color: white;
+}
+
+.red {
+  background-color: #f5818e;
+}
+
+.yellow {
+  background-color: #fdfd96;
+}
+
+.green {
+  background-color: #a8e893;
+}
+
+.blue {
+  background-color: #7dd6ee;
+}
+
+.purple {
+  background-color: #a3a7e8;
+}
+
+.is-ancestor {
+  flex-wrap: wrap;
+}

@@ -1,15 +1,98 @@
 [[extend 'layout.html']]
 
 <div id="vue-target">
-  <section class="section">
 
+  <section class="section">
+    <div class="title">Personal Notes</div>
+  </section>
+
+  <section class="section">
+    <div class="form" v-show="form_visible">
+      <div class="is-fullwidth">
+        <div class="field">
+            <input class="input" type="text" v-model="add_note_title" placeholder="Add note title here">
+        </div>
+        <div class="field">
+          <textarea class="textarea is-fullwidth input" v-model="add_note_text" placeholder="Add note text here"></textarea>
+        </div>
+        <button type="submit" @click="add_note" class="button is-primary is-size-6" v-on:click="form_visible = !form_visible">Add Note</button>
+        <button class="button is-warning is-size-6" v-on:click="form_visible = !form_visible">Cancel</button>
+      </div>
+    </div>
+    <div v-show="!form_visible">
+      <i class="fa fa-plus-circle fa-3x" v-on:click="form_visible = !form_visible"></i>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="tile is-ancestor">
+      <div class="tile is-parent is-4" v-for="p in notes">
+        <div class="tile is-child box" v-bind:class="[p.color]">
+            <div class="level">
+              <div class="level-left control">
+                <input class="input has-fixed-size is-medium is-hovered title" type="text" v-model="p.note_title" @click="do_edit(p._idx)">
+              </div>
+              <div class="level-right">
+                <template v-if="p.important == 0">
+                  <i class="fa fa-star-o fa-2x" @click="set_star(p._idx, 1)"></i>
+                </template> 
+                <template v-else-if="p.important == 1">
+                  <i class="fa fa-star fa-2x" style="color: yellow; -webkit-text-stroke-width: 1px;-webkit-text-stroke-color: black" @click="set_star(p._idx, 0)"></i>
+                </template> 
+              </div>
+            </div>
+
+            <div class="level">
+              <textarea class="textarea has-fixed-size is-hovered" style="background-color: #f2f2f2" v-model="p.note_text" @mouseout="p.edit == false" @click="do_edit(p._idx)"></textarea>
+            </div>
+
+            <div v-if="p.edit" class="level-right">
+              <div class="level-item">
+                <button @click="do_save(p._idx)" class="button is-primary">
+                <i class="fa fa-check-square-o fa-fw"></i></button></div>
+              <div class="level-item">
+                <button @click="do_cancel(p._idx)" class="button is-danger">
+                <i class="fa fa-close fa-fw"></i></button></div>
+            </div>
+
+            <div class="level">
+              <div class="tile is-ancestor level-left">
+                <div class="tile is-2 is-parent">
+                  <div class="tile is-child button" style="background-color: #f2c7cc;" @click="set_color(p._idx, 'red')"></div>
+                </div>
+                <div class="tile is-2 is-parent">
+                  <div class="tile is-child button" style="background-color: #f3fbd2;" @click="set_color(p._idx, 'yellow')"></div>
+                </div>
+                <div class="tile is-2 is-parent">
+                  <div class="tile is-child button" style="background-color: #d7f2ce;" @click="set_color(p._idx, 'green')"></div>
+                </div>
+                <div class="tile is-2 is-parent">
+                  <div class="tile is-child button" style="background-color: #c2e7f1;" @click="set_color(p._idx, 'blue')"></div>
+                </div>
+                <div class="tile is-2 is-parent">
+                  <div class="tile is-child button" style="background-color: #c0c2e2;" @click="set_color(p._idx, 'purple')"></div>
+                </div>
+              </div>
+              <div class="level-right">
+                <i class="fa fa-trash fa-2x" @click="delete_note(p._idx)"></i>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
   </section>
 </div>
 
 [[block page_scripts]]
 <!-- Loads the index-specific js for Vue -->
 <script>
-  let callback_url = "[[=XML(callback_url)]]";
+  let get_notes_url = "[[=XML(get_notes_url)]]";
+  let add_note_url = "[[=XML(add_note_url)]]";
+  let delete_note_url = "[[=XML(delete_note_url)]]";
+  let get_star_url = "[[=XML(get_star_url)]]";
+  let set_star_url = "[[=XML(set_star_url)]]";
+  let get_color_url = "[[=XML(get_color_url)]]";
+  let set_color_url = "[[=XML(set_color_url)]]";
 </script>
 <script src="js/index.js"></script>
 [[end]]
