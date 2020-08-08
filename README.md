@@ -1,7 +1,7 @@
 # Notes Web App
 
 # Disclaimer
-Since this was a school project, I will be taking this down a month before the next instruction of this class with the same professor to discourage plagarism. 
+Since this was a school project, I will be taking this down a month before the next instruction of this class with the same professor to discourage plagarism. This will happen around March of 2021 since the next scheduled instruction with the same professor is during Spring Quarter of 2021. 
 
 ## Sample Screenshot (As of July 13, 2020)
 
@@ -26,6 +26,5 @@ This was the last assignment from my Web Applications course with free reigns to
 Currently not available for ease of use to the public since it isn't deployed to the cloud. However, if you have the Py4Web application, you could clone this into the /apps folder. Run py4web as normally and the project folder should show up in the dashboard.
 
 ## Author
-
 Kenneth Nguyen
 
