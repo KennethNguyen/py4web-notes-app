@@ -13,7 +13,7 @@ Since this was a school project, I will be taking this down a month before the n
 
 ## Description
 
-A full-stack notes CRUD web application created using Py4Web, Vue.js, and SQLite. 
+A full-stack notes CRUD web application created using Py4Web, Vue.js, built-in DAL (database abstraction layer) connection to SQLite, and Bulma. 
 
 This was the last assignment from my Web Applications course with free reigns to design from scratch how the user interface would be like. There were specific functionalities required such as users can only see their own notes, authentication of deleting notes and signing in, users are able to create and delete their notes with no problem, and notes are ordered by most recently updated.
 
